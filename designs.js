@@ -1,10 +1,43 @@
-// Select color input
-// Select size input
+<html>
+<head>
+    <title>Pixel Art Maker!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Lab: Pixel Art Maker</h1>
 
-// When size is submitted by the user, call makeGrid()
+    <h2>Choose Grid Size</h2>
+    <form id="sizePicker">
+        Grid Height:
+        <input type="number" id="inputHeight" name="height" min="1" value="1">
+        Grid Width:
+        <input type="number" id="inputWeight" name="width" min="1" value="1">
+        <input type="submit">
+    </form>
 
-function makeGrid() {
+    <h2>Pick A Color</h2>
+    <input type="color" id="colorPicker">
 
-// Your code goes here!
+    <h2>Design Canvas</h2>
+    <table id="pixelCanvas"></table>
 
+    <script src="designs.js"></script>
+</body>
+</html>
 }
+function makeGrid() {
+ for (let r=0; r<height.value; r++){
+        const row = canvas.insertRow(r);
+        for (let c=0; c<width.value; c++){
+            const cell = row.insertCell(c);
+            cell.addEventListener("click", fillSquare);
+        }
+    }
+}
+
+function clearGrid(){
+    while (canvas.firstChild){
+         canvas.removeChild(canvas.firstChild);
+    }
+
